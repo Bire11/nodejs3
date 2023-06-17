@@ -80,16 +80,21 @@ function ViewApp (){
           
             <thead>
               <tr>
+           
+              <th>ID</th>
                 <th>First_Name</th>
                 <th>Last_Name</th>
                 <th>Email</th>
                 <th>Phone_Number</th>
                 <th>date_updated</th>
+
               </tr>
             </thead>
           
-              {applicants.map(item => (
+              {applicants.map((item,i) => (
                 <tr key={item.id}>
+                   
+                   <td>{++i}</td>
                 <td>{item.first_name}</td>
                 <td>{item.last_name}</td>
                 <td>{item.email}</td>
