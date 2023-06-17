@@ -6,15 +6,19 @@ import reportWebVitals from './reportWebVitals';
 //import Bmi from './components/bmi';
 import AjaxApi from './components/AjaxApi';
 import ServerTwo from './components/ServerTwo';
+
 import ApplicationForm from'./components/Dashbord/ApplicationForm';
+
+import ViewApp from './components/ViewApp';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* <App />
+     {/* <App />
    
      <AjaxApi/> 
-    < ServerTwo/> */}
-    <ApplicationForm/>
+    < ServerTwo/> 
+    <ApplicationForm/>  */}
+    <ViewApp/>
   </React.StrictMode>
 );
 
