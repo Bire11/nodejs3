@@ -16,6 +16,7 @@ const handleChange = (event) =>{
     const value = event.target.value;
     setFormValues(values =>({...values, [name]:value}))
 }
+//http://localhost:4000/applicant/list-applicant
 
 const handleSubmit =(event)=>{
     event.preventDefault();
