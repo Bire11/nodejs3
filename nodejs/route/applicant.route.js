@@ -13,4 +13,14 @@ router.get('/list-applicant',(req,res) =>{
     .then(data => res.json(data))
     .catch(err => res.status(400).json({nodata:'No data found'}))
 })
+router.get ('/update-applicant/:id',(req,res)=>{
+    applicantSchema.findById(req.params.id)
+    .then(data=> res.json(data))
+    .catch(err=>res.status(404).json({err:'Data not found'}))
+})
+router.put ('/update-applicant/:id',(req,res)=>{
+    applicantSchema.findByIdAndUpdate(req.params.id, req.body)
+    .then(data=> res.json({message:'data updated'}))
+    .catch(err=>res.status(404).json({err:'Data not found'}))
+})
 module.exports=router

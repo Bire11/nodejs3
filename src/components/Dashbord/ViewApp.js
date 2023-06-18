@@ -35,9 +35,10 @@
 // import modules
 import React from 'react';
 import './table.css';
-//import './app.css'
+import './app.css'
 import axios from 'axios';
 import {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom'
 //import {Link, useNavigate} from 'react-router-dom'
 
 
@@ -72,12 +73,16 @@ function ViewApp (){
     //     return <div>Loading ...</div>
     // }
     // else{
-   
+     
+      
     return (
     
             <div className="table-wrapper">
+                <Link className='button condensed new' to="/new-applicant">Add new</Link>
+                
                 <table className="fl-table">
-          
+              
+
             <thead>
               <tr>
            
@@ -87,9 +92,11 @@ function ViewApp (){
                 <th>Email</th>
                 <th>Phone_Number</th>
                 <th>date_updated</th>
+                <th>action</th>
 
               </tr>
             </thead>
+            <tbody>
           
               {applicants.map((item,i) => (
                 <tr key={item.id}>
@@ -100,9 +107,30 @@ function ViewApp (){
                 <td>{item.email}</td>
                   <td>{item.phone_number}</td>
                   <td>{item.date_updated}</td>
+                  <td>
+                  <Link className="button condensed new " to={`/edit-applicant/${item._id}`}>
+                <i className="fa-solid fa-pen-to-square">edit</i></Link>
+                 {/* &nbsp;&nbsp;&nbsp;&nbsp;
+              <Link onClick = {() => { window.confirm('Are you sure you wish to delete this data?', )
+                                     && onClickDelete(data._id)}}>
+                <i className="fa-sharp fa-solid fa-trash" style={{color:'#f41032'}}></i>
+              </Link>
+              
+               &nbsp;&nbsp;&nbsp;&nbsp;
+              <Link to={`addCourse/${data._id}`}> 
+              <Link className='button condensed new' to="/edit-applicant">
+                <i className="fa-solid fa-plus" style={{color: '#1f5122'}}></i>
+                <span className='tooltiptext'>edit-applicant</span>
+              </Link>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+              <Link to={`getDetail/${data._id}`}>
+                <i className="fa-sharp fa-solid fa-circle-info"></i>
+              </Link>  */}
+             </td>
+                  
                 </tr>
               ))}
-           
+           </tbody>
           </table>
         </div>
       )
