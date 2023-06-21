@@ -4,7 +4,8 @@
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom';
 import ViewApp from './ViewApp';
 import ApplicationForm from './ApplicationForm';
-import EditApplicant from './EditApplicant'
+import EditApplicant from './EditApplicant';
+import AddCourse from './AddCourse';
 function Dashboard(){
 
     return (
@@ -15,6 +16,7 @@ function Dashboard(){
                 
                     <Route path='/new-applicant' element={<ApplicationForm/>}/>
                     <Route path='/edit-applicant/:id' element={<EditApplicant/>}/>
+                    <Route path='/addCourse/:id' element={<AddCourse/>}/>
                 </Routes>
             </div>
         </Router>

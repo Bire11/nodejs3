@@ -38,8 +38,8 @@ import './table.css';
 import './app.css'
 import axios from 'axios';
 import {useState, useEffect} from 'react';
-import {Link} from 'react-router-dom'
-//import {Link, useNavigate} from 'react-router-dom'
+//import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 
 function ViewApp (){
@@ -48,7 +48,7 @@ function ViewApp (){
   const [applicants, setApplicants] = useState([]);
   const [getMessage, setMessage] = useState('') // success message after deleted
   const [isSuccess, setSuccess] = useState(false); // manage success of deleting item
-  //const navigate = useNavigate()
+  const navigate = useNavigate()
 
   // add title 
   useEffect(() =>{
@@ -65,6 +65,62 @@ function ViewApp (){
       console.log('Data not found.' +err.message)
     });
   }, []);
+  const onClickDelete =(id) =>{
+    // if (window.confirm('Are you sure to detele all data?', )){
+      axios.delete(`http://localhost:4000/applicant/delete-applicant/${id}`)
+          .then((res) => {
+            navigate('/') // navigate to list applicates
+            setMessage('Applicant successfuly deleted!') // set success message
+            setSuccess(true) // set is success to true
+          })
+          .catch((err) =>{
+            console.log('Error to delete data.'+err.message)
+          });
+  };
+
+  // onChange handler about selecting multiple items from the table
+  // apply deleting the items
+  const [checked, setChecked] = useState([]); // save the selected items to checked
+  // Add/Remove checked item from list
+  const handleCheck = (event) => {
+    var updatedList = [...checked];
+    if (event.target.checked) {
+      // three dots - rest parameters or spread operators and expands
+      // an array into list
+      updatedList = [...checked, event.target.value];
+    } else {
+      updatedList.splice(checked.indexOf(event.target.value), 1);
+    }
+    setChecked(updatedList); // checked items are saved as an array of object
+  };
+  //console.log(checked)
+
+  /* DELETE ALL API:
+          the API will request to delete all checked items
+          from the database
+  */
+  const deleteChecked =() =>{
+    // confirm the action before deleting the item 
+    // to make sure that you're gonna delete the selected items
+    if (window.confirm('Are sure to delete all selected data?', )){
+      // deleting multiple items with delete api call is not possible
+      // this is an alternative solution to delete multiple records
+      // but it is really not an efficient way 
+    for(let id of checked){
+      // call api along with id to delete selected data by id
+       axios.delete(`http://localhost:4000/applicant/delete-applicant/${id}`)
+            .then((res) => {
+              setMessage('Successfuly Deleted!'); // set flash message
+              setSuccess(true); // set success to true
+            })
+            .catch((err) =>{
+              console.log('Error to delete data.'+err.message)
+          });
+      } // end of window alert
+    } 
+    navigate('/') // navigate to list applicates 
+  }
+  
         
     // if(error){
     //     return(<div>Error:{error.message}</div>)
@@ -109,27 +165,29 @@ function ViewApp (){
                   <td>{item.date_updated}</td>
                   <td>
                   <Link className="button condensed new " to={`/edit-applicant/${item._id}`}>
-                <i className="fa-solid fa-pen-to-square">edit</i></Link>
-                 {/* &nbsp;&nbsp;&nbsp;&nbsp;
+                <i className="fa-solid fa-pen-to-square"></i></Link>
+                  &nbsp;&nbsp;&nbsp;&nbsp;
               <Link onClick = {() => { window.confirm('Are you sure you wish to delete this data?', )
-                                     && onClickDelete(data._id)}}>
+                                     && onClickDelete(item._id)}}>
                 <i className="fa-sharp fa-solid fa-trash" style={{color:'#f41032'}}></i>
               </Link>
               
                &nbsp;&nbsp;&nbsp;&nbsp;
-              <Link to={`addCourse/${data._id}`}> 
-              <Link className='button condensed new' to="/edit-applicant">
-                <i className="fa-solid fa-plus" style={{color: '#1f5122'}}></i>
-                <span className='tooltiptext'>edit-applicant</span>
+      
+              <Link className='button condensed new' to={`/addCourse/${item._id}`}>
+                {/* <i className="fa-solid fa-plus" style={{color: '#1f5122'}}></i> */}
+                <span className='tooltiptext'></span>
+                {/* Register New Course */}
               </Link>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-              <Link to={`getDetail/${data._id}`}>
+              <Link to={`getDetail/${item._id}`}>
                 <i className="fa-sharp fa-solid fa-circle-info"></i>
-              </Link>  */}
+              </Link>  
              </td>
                   
                 </tr>
               ))}
+              
            </tbody>
           </table>
         </div>
