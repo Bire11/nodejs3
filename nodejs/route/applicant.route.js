@@ -37,6 +37,11 @@ router.post('/registerCourse',(req,res)=>{
     .catch(err => res.status(400).json({err:'unable to add this data'}));
 
 })
+router.post('/login',(req,res)=>{
+  res.send({
+    token:'test123'
+  })
+});
 
 const  ObjectID = require('mongoose').Types.ObjectId;
 router.get('/applicantDetail/:id', (req, res) =>{

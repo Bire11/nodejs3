@@ -164,7 +164,7 @@ function ViewApp (){
                   <td>{item.phone_number}</td>
                   <td>{item.date_updated}</td>
                   <td>
-                  <Link className="button condensed new " to={`/edit-applicant/${item._id}`}>
+                  <Link className="button1 condensed  " to={`/edit-applicant/${item._id}`}>
                 <i className="fa-solid fa-pen-to-square"></i></Link>
                   &nbsp;&nbsp;&nbsp;&nbsp;
               <Link onClick = {() => { window.confirm('Are you sure you wish to delete this data?', )
