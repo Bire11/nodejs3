@@ -60,6 +60,17 @@ Link, a{
 }
 
 /* delete button */
+.button2{
+  margin-left: 1000px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight:400;
+  display:inline-block;
+  color:#FFF;
+  border-radius: .25em;
+  text-shadow: -1px -1px 0px rgba(0,0,0,0.4);
+  cursor: pointer;
+}
 
 .button{
   font-family:'Open Sans';

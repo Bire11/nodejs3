@@ -130,12 +130,18 @@ function ViewApp (){
     // }
     // else{
      
+    const logout = () => {
+      sessionStorage.removeItem('token');
+      navigate('/login')
+  };
       
     return (
     
             <div className="table-wrapper">
                 <Link className='button condensed new' to="/new-applicant">Add new</Link>
-                
+              
+                <button className="button2"  onClick={logout}>Logout</button>
+            
                 <table className="fl-table">
               
 

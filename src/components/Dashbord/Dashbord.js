@@ -10,12 +10,14 @@ import GetDetail from './GetDetail';
 import Login from '../Login/Login';
 import UseToken from '../Login/UseToken';
 
+
 function Dashboard(){
 
 const {token, setToken}=UseToken();
 if(!token){
     return <Login setToken={setToken}/>
 }
+
     return (
         <Router>
             <div>
@@ -28,6 +30,7 @@ if(!token){
                     <Route path='/getDetail/:id' element={<GetDetail/>}/>
                     {/* <Route path='/useToken/:id' element={<UseToken/>}/> */}
                     <Route path='/login/' element={<Login/>}/>
+                  
                 </Routes>
             </div>
         </Router>

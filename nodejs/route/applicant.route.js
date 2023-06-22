@@ -43,6 +43,11 @@ router.post('/login',(req,res)=>{
   })
 });
 
+router.get('/logout',(req,res)=>{
+  res.send({
+    token:'test123'
+  })
+});
 const  ObjectID = require('mongoose').Types.ObjectId;
 router.get('/applicantDetail/:id', (req, res) =>{
   applicantSchema.aggregate([
